@@ -651,3 +651,87 @@ footer p { color: #5a546c; font-size: 0.9rem; }
     .hero h1 { font-size: 2.8rem; }
     .nav-links { display: none; } /* Simpel responsif hidding */
 }
+
+/* ==========================================
+   SUPER RESPONSIVE DESIGN BREAKPOINTS (PORTRAIT MODE)
+   ========================================== */
+@media (max-width: 992px) {
+    /* Grid Layout Otomatis Menjadi Vertikal */
+    .hero-container, .about-content-grid, .skills-grid, .projects-flex-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .hero-image-area { 
+        margin-top: 30px; 
+    }
+    
+    .hero h1 { 
+        font-size: 2.5rem; 
+    }
+
+    /* DESAIN RESPONSIF MODEREN: Ubah Navigasi Menjadi Bottom Nav Bar */
+    nav {
+        padding: 20px 0;
+    }
+    
+    nav .logo {
+        margin: 0 auto; /* Taruh logo di tengah atas pada layar tablet */
+    }
+
+    .nav-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(9, 5, 20, 0.85);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 0;
+        margin: 0;
+        z-index: 999;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links li a {
+        flex-direction: column; /* Ikon di atas, teks di bawah */
+        gap: 4px;
+        font-size: 0.75rem;
+    }
+
+    .nav-links li a i {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links li a::after {
+        display: none; /* Sembunyikan garis berjalan di HP agar tidak berantakan */
+    }
+    
+    /* Berikan padding bawah pada body agar konten tidak tertutup bottom nav */
+    body {
+        padding-bottom: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav .logo {
+        font-size: 1.4rem;
+    }
+    /* Sembunyikan teks menu di HP yang sangat kecil, fokus hanya pada ikon elegan */
+    .nav-links li a span {
+        display: none;
+    }
+    .nav-links li a i {
+        font-size: 1.4rem;
+        padding: 5px;
+    }
+    .hero h1 { 
+        font-size: 2.2rem; 
+    }
+    .section-container {
+        padding: 80px 5% 40px 5%;
+    }
+}
