@@ -267,34 +267,115 @@ nav {
     50% { transform: translateY(-10px); }
 }
 
-/* REUSABLE SECTIONS SYSTEM */
-.section-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 120px 8% 60px 8%;
+/* --- KONTAINER UTAMA MOCKUP (Pastikan Membawa Class Ini) --- */
+.hero-mockup-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ukuran disesuaikan agar pas dengan mockup di gambar */
+    margin: 60px auto;
+    display: block;   /* Menggunakan block agar alur element absolut lebih presisi */
 }
-.section-header { margin-bottom: 60px; }
-.sub-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    color: #da22ff;
-    font-weight: 700;
+
+.mockup-image {
+    width: 100%;
+    height: auto;
     display: block;
-    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
 }
-.section-header h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+
+/* --- STYLING DASAR BADGE --- */
+.floating-tech-badge {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    
+    /* Wajib Absolute untuk memisahkan posisi */
+    position: absolute; 
+    z-index: 3; 
 }
-.decor-line {
-    width: 70px;
-    height: 4px;
-    background: var(--primary-gradient);
-    margin-top: 15px;
-    border-radius: 2px;
+
+/* --- DISTRIBUSI POSISI MELINGKARI LAPTOP (Telah Dikalibrasi) --- */
+
+/* SISI KIRI (Atas ke Bawah) */
+.badge-html { 
+    top: 15%; 
+    left: -35px; 
+    background: #E34F26; 
+    animation: floatLeftSmooth 3.5s ease-in-out infinite;
+}
+.badge-js { 
+    top: 45%; 
+    left: -45px; 
+    background: #F7DF1E; color: #000000; 
+    animation: floatLeftSmooth 3s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+.badge-cpp { 
+    bottom: 15%; 
+    left: -35px; 
+    background: #00599C; 
+    animation: floatLeftSmooth 3.8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* SISI KANAN (Atas ke Bawah) */
+.badge-css { 
+    top: 25%; 
+    right: -35px; 
+    background: #1572B6; 
+    animation: floatRightSmooth 3.2s ease-in-out infinite;
+}
+.badge-python { 
+    top: 55%; 
+    right: -45px; 
+    background: #3776AB; 
+    animation: floatRightSmooth 3.6s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+.badge-php { 
+    bottom: 10%; 
+    right: -35px; 
+    background: #777BB4; 
+    animation: floatRightSmooth 3.4s ease-in-out infinite;
+    animation-delay: 0.8s;
+}
+
+/* DI BAWAH (Paling Tengah) */
+.badge-java { 
+    bottom: -30px; 
+    left: calc(50% - 32.5px); /* Tepat berada di tengah-tengah bawah laptop */
+    background: #007396; 
+    animation: floatBottomSmooth 4s ease-in-out infinite;
+}
+
+/* --- LOGIKA ANIMASI HALUS ANTI BENTROK --- */
+@keyframes floatLeftSmooth {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(-5px); }
+}
+
+@keyframes floatRightSmooth {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(10px) translateX(5px); }
+}
+
+@keyframes floatBottomSmooth {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(13px); }
+}
+
+/* Efek Interaksi saat Kursor Mendekat */
+.floating-tech-badge:hover {
+    transform: scale(1.18) !important;
+    z-index: 10;
 }
 
 /* ABOUT SECTION */
