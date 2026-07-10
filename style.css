@@ -68,7 +68,6 @@ nav {
 
 .logo span { 
     color: #da22ff; 
-    /* Efek pendaran logo yang berkedip lembut secara konstan */
     animation: logoGlow 4s infinite ease-in-out;
 }
 
@@ -91,7 +90,6 @@ nav {
     transition: color 0.3s ease;
 }
 
-/* 1. ANIMASI GARIS BAWAH BERJALAN TERUS-MENERUS */
 .nav-links li a::after {
     content: '';
     position: absolute;
@@ -99,17 +97,14 @@ nav {
     left: 0;
     width: 100%;
     height: 2px;
-    /* Menggunakan gradien linear berulang untuk efek mengalir */
     background: linear-gradient(90deg, #00f2fe, #da22ff, #00f2fe);
     background-size: 200% auto;
     border-radius: 2px;
-    /* Menjalankan animasi secara infinite sejak halaman dimuat */
     animation: waveFlow 3s linear infinite;
-    opacity: 0.4; /* Terlihat samar pada menu biasa */
+    opacity: 0.4;
     transition: opacity 0.3s ease, height 0.3s ease;
 }
 
-/* Menu yang Aktif atau di-Hover akan Menyala Lebih Terang */
 .nav-links li a:hover, 
 .nav-links li a.active {
     color: var(--text-white);
@@ -118,41 +113,30 @@ nav {
 
 .nav-links li a:hover::after,
 .nav-links li a.active::after {
-    opacity: 1; /* Cahaya garis menjadi solid */
-    height: 3px; /* Garis menebal secara elegan */
+    opacity: 1;
+    height: 3px;
 }
 
-/* 2. ANIMASI IKON BERGERAK NAIK TURUN TERUS-MENERUS */
 .nav-links li a i {
     display: inline-block;
     animation: iconFloat 3s infinite ease-in-out;
 }
 
-/* Memberikan jeda (delay) antar-ikon agar gerakannya bergelombang bergantian */
 .nav-links li:nth-child(1) a i { animation-delay: 0s; }
 .nav-links li:nth-child(2) a i { animation-delay: 0.2s; }
 .nav-links li:nth-child(3) a i { animation-delay: 0.4s; }
 .nav-links li:nth-child(4) a i { animation-delay: 0.6s; }
 .nav-links li:nth-child(5) a i { animation-delay: 0.8s; }
 
-
-/* ==========================================
-   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
-   ========================================== */
-
-/* Animasi mengalirkan warna gradien pada garis secara konstan */
+/* ANIMATION KEYFRAMES */
 @keyframes waveFlow {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
-
-/* Animasi mengambang untuk semua ikon menu secara mandiri */
 @keyframes iconFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
 }
-
-/* Animasi pendaran lampu neon pada teks logo */
 @keyframes logoGlow {
     0%, 100% { text-shadow: 0 0 10px rgba(218, 34, 255, 0.2); }
     50% { text-shadow: 0 0 25px rgba(218, 34, 255, 0.8); }
@@ -313,15 +297,12 @@ nav {
     border-radius: 2px;
 }
 
-/* ==========================================
-   ABOUT SECTION WITH PREMIUM GLOW & FLOATING ANIMATIONS
-   ========================================== */
+/* ABOUT SECTION */
 .about-content-grid {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     gap: 60px;
 }
-
 .about-main-text h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.8rem;
@@ -331,20 +312,16 @@ nav {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 .about-main-text p {
     color: var(--text-muted);
     line-height: 1.9;
     font-size: 1.05rem;
 }
-
 .about-cards-sub { 
     display: flex; 
     flex-direction: column; 
     gap: 25px; 
 }
-
-/* KARTU MINI PREMIUM DENGAN EMISI CAHAYA & EFEK MENGAMBANG CONTIUNUOUS */
 .info-mini-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -357,28 +334,17 @@ nav {
     overflow: hidden;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
-    /* Memicu animasi mengambang lembut secara konstan */
     animation: cardFloat 4s infinite ease-in-out;
 }
+.about-cards-sub .info-mini-card:nth-child(1) { animation-delay: 0s; }
+.about-cards-sub .info-mini-card:nth-child(2) { animation-delay: 2s; }
 
-/* Memberikan jeda waktu (delay) animasi antar kartu agar tidak bergerak bersamaan */
-.about-cards-sub .info-mini-card:nth-child(1) {
-    animation-delay: 0s;
-}
-.about-cards-sub .info-mini-card:nth-child(2) {
-    animation-delay: 2s; /* Kartu kedua bergerak bergantian */
-}
-
-/* Efek saat kursor menyentuh kartu (Hover) */
 .info-mini-card:hover { 
     border-color: rgba(218, 34, 255, 0.3);
     box-shadow: 0 15px 35px rgba(145, 20, 255, 0.15);
     transform: scale(1.02);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-
-/* KOTAK IKON BERPENDAR KONSTAN */
 .icon-box {
     width: 50px;
     height: 50px;
@@ -391,24 +357,19 @@ nav {
     color: #da22ff;
     font-size: 1.3rem;
     position: relative;
-    /* Animasi pendaran konstan pada ikon */
     animation: iconGlow 3s infinite ease-in-out;
 }
-
 .info-mini-card h4 { 
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.25rem; 
     color: var(--text-white);
     letter-spacing: 0.5px;
 }
-
 .info-mini-card p { 
     color: var(--text-muted); 
     font-size: 0.95rem; 
     line-height: 1.6; 
 }
-
-/* MEWAH: Efek garis cahaya menyapu (Sweep Light) di dalam kartu secara berkala */
 .info-mini-card::before {
     content: '';
     position: absolute;
@@ -421,43 +382,25 @@ nav {
     animation: lightSweep 6s infinite ease-in-out;
 }
 
-/* ==========================================
-   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
-   ========================================== */
-
-/* Animasi mengambang naik-turun yang sangat lembut untuk kartu */
 @keyframes cardFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
-
-/* Animasi sapuan cahaya mewah melewati latar belakang kartu */
 @keyframes lightSweep {
     0% { left: -150%; }
     50%, 100% { left: 150%; }
 }
-
-/* Animasi denyut pendaran cahaya (glowing) pada kotak ikon */
 @keyframes iconGlow {
-    0%, 100% { 
-        box-shadow: 0 0 0px rgba(218, 34, 255, 0);
-        border-color: rgba(218, 34, 255, 0.2);
-    }
-    50% { 
-        box-shadow: 0 0 15px rgba(218, 34, 255, 0.4);
-        border-color: rgba(218, 34, 255, 0.6);
-    }
+    0%, 100% { box-shadow: 0 0 0px rgba(218, 34, 255, 0); border-color: rgba(218, 34, 255, 0.2); }
+    50% { box-shadow: 0 0 15px rgba(218, 34, 255, 0.4); border-color: rgba(218, 34, 255, 0.6); }
 }
 
-/* ==========================================
-   SKILLS SECTION PROGRESS BARS WITH FLOWING ANIMATION
-   ========================================== */
+/* SKILLS SECTION */
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
-
 .skill-item {
     background: var(--bg-card);
     padding: 25px;
@@ -465,32 +408,22 @@ nav {
     border: 1px solid rgba(255, 255, 255, 0.03);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
-/* Sedikit animasi mikro saat kartu skill disorot */
 .skill-item:hover {
     transform: translateY(-3px);
     border-color: rgba(0, 242, 254, 0.2);
 }
-
 .skill-head {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
 }
-
-.skill-head h5 { 
-    font-size: 1.05rem; 
-    font-weight: 600; 
-}
-
+.skill-head h5 { font-size: 1.05rem; font-weight: 600; }
 .skill-head span { 
     color: #00f2fe; 
     font-weight: 700; 
     font-size: 0.95rem; 
-    /* Efek teks persentase berkedip lembut secara konstan */
     animation: textPulse 2s infinite ease-in-out;
 }
-
 .progress-bar {
     width: 100%;
     height: 6px;
@@ -499,19 +432,14 @@ nav {
     overflow: hidden;
     position: relative;
 }
-
 .progress-fill {
     height: 100%;
-    /* Menggunakan kombinasi 4 warna gradien agar aliran transisinya mulus */
     background: linear-gradient(90deg, #00f2fe, #da22ff, #00f2fe, #da22ff);
     background-size: 300% 100%;
     border-radius: 10px;
     position: relative;
-    /* Menjalankan animasi warna mengalir secara konstan */
     animation: progressFlow 4s linear infinite;
 }
-
-/* Menambahkan efek kilatan cahaya (shimmer) transparan yang berjalan di atas progress bar */
 .progress-fill::after {
     content: '';
     position: absolute;
@@ -523,23 +451,14 @@ nav {
     animation: shimmerEffect 2.5s infinite linear;
 }
 
-/* ==========================================
-   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
-   ========================================== */
-
-/* Animasi mengalirkan warna gradien dari kiri ke kanan */
 @keyframes progressFlow {
     0% { background-position: 0% 0%; }
     100% { background-position: 150% 0%; }
 }
-
-/* Animasi kilatan cahaya metalik (shimmering) */
 @keyframes shimmerEffect {
     0% { left: -100%; }
     100% { left: 100%; }
 }
-
-/* Animasi denyut halus untuk angka persentase */
 @keyframes textPulse {
     0%, 100% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 242, 254, 0.2); }
     50% { opacity: 1; text-shadow: 0 0 12px rgba(0, 242, 254, 0.6); }
@@ -642,96 +561,133 @@ footer {
 }
 footer p { color: #5a546c; font-size: 0.9rem; }
 
-/* RESPONSIVE DESIGN BREAKPOINTS */
+
+/* ==========================================================================
+   PERBAIKAN SYSTEM RESPONSIF TOTAL (TABLET & SMARTPHONE / HP)
+   ========================================================================== */
+
+/* 1. Pengaturan untuk Screen Ukuran Tablet (Maksimal 992px) */
 @media (max-width: 992px) {
-    .hero-container, .about-content-grid, .skills-grid, .projects-flex-grid {
+    .hero-container, 
+    .about-content-grid, 
+    .skills-grid, 
+    .projects-flex-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
-    .hero-image-area { margin-top: 40px; }
-    .hero h1 { font-size: 2.8rem; }
-    .nav-links { display: none; } /* Simpel responsif hidding */
+    .hero-image-area { 
+        margin-top: 40px; 
+    }
+    .hero h1 { 
+        font-size: 2.8rem; 
+    }
 }
 
-/* ==========================================
-   SUPER RESPONSIVE DESIGN BREAKPOINTS (PORTRAIT MODE)
-   ========================================== */
-@media (max-width: 992px) {
-    /* Grid Layout Otomatis Menjadi Vertikal */
-    .hero-container, .about-content-grid, .skills-grid, .projects-flex-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+/* 2. Pengaturan Khusus Layar Smartphone / HP (Maksimal 768px) */
+@media (max-width: 768px) {
+    /* Mengoptimalkan lebar batas halaman di HP */
+    .hero-wrapper {
+        padding: 0 4%;
+        min-height: auto;
     }
     
-    .hero-image-area { 
-        margin-top: 30px; 
-    }
-    
-    .hero h1 { 
-        font-size: 2.5rem; 
+    .section-container {
+        padding: 80px 4% 40px 4%;
     }
 
-    /* DESAIN RESPONSIF MODEREN: Ubah Navigasi Menjadi Bottom Nav Bar */
+    /* MENYELAMATKAN NAVIGASI BAR AGAR MUNCUL & RAPI */
     nav {
+        flex-direction: column; /* Menyusun vertikal: Logo di atas, Menu di bawah */
+        gap: 20px;
         padding: 20px 0;
-    }
-    
-    nav .logo {
-        margin: 0 auto; /* Taruh logo di tengah atas pada layar tablet */
     }
 
     .nav-links {
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        display: flex; /* Memaksa menu tautan muncul kembali */
+        flex-wrap: wrap; /* Jika menu tak muat, otomatis turun ke baris berikutnya */
+        justify-content: center;
+        gap: 15px;
         width: 100%;
-        background: rgba(9, 5, 20, 0.85);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        display: flex;
-        justify-content: space-around;
-        padding: 12px 0;
-        margin: 0;
-        z-index: 999;
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .nav-links li a {
-        flex-direction: column; /* Ikon di atas, teks di bawah */
-        gap: 4px;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+        padding: 6px 10px;
     }
 
-    .nav-links li a i {
+    /* MENATA ULANG HERO SECTION DI HP */
+    .hero-container {
+        display: flex;
+        flex-direction: column-reverse; /* Foto otomatis pindah ke atas teks */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .cta-buttons {
+        flex-direction: column; /* Tombol bertumpuk vertikal agar pas di jempol */
+        gap: 12px;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Mengunci ukuran frame gambar agar pas layar HP */
+    .image-card-frame {
+        width: 280px;
+        height: 360px;
+    }
+
+    .floating-tech-badge {
+        width: 42px;
+        height: 42px;
         font-size: 1.2rem;
     }
-    
-    .nav-links li a::after {
-        display: none; /* Sembunyikan garis berjalan di HP agar tidak berantakan */
-    }
-    
-    /* Berikan padding bawah pada body agar konten tidak tertutup bottom nav */
-    body {
-        padding-bottom: 70px;
-    }
-}
 
-@media (max-width: 480px) {
-    nav .logo {
-        font-size: 1.4rem;
+    /* MENYELARASKAN BAGIAN PORTOFOLIO LAIN DI HP */
+    .about-cards-sub {
+        gap: 15px;
     }
-    /* Sembunyikan teks menu di HP yang sangat kecil, fokus hanya pada ikon elegan */
-    .nav-links li a span {
-        display: none;
+
+    .info-mini-card {
+        padding: 20px;
     }
-    .nav-links li a i {
-        font-size: 1.4rem;
-        padding: 5px;
+
+    .about-main-text h3 {
+        font-size: 1.5rem;
     }
-    .hero h1 { 
-        font-size: 2.2rem; 
+
+    .contact-card-glass {
+        padding: 40px 20px;
     }
-    .section-container {
-        padding: 80px 5% 40px 5%;
+
+    .contact-card-glass h3 {
+        font-size: 1.6rem;
+    }
+
+    .social-links-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .social-icon-btn {
+        width: 100%;
+        justify-content: center;
     }
 }
