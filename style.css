@@ -1,0 +1,653 @@
+/* CSS RESET & VARIABLES */
+:root {
+    --bg-deep: #090514;
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --border-glow: rgba(218, 34, 255, 0.15);
+    --primary-gradient: linear-gradient(135deg, #da22ff 0%, #9114ff 100%);
+    --accent-glow: radial-gradient(circle, rgba(145, 20, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+    --text-white: #ffffff;
+    --text-muted: #a49fb6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* LUXURY AMBIENT GLOW BACKDROPS */
+.ambient-glow {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+.bg-glow-1 { width: 500px; height: 500px; background: var(--accent-glow); top: -200px; left: -100px; }
+.bg-glow-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(218, 34, 255, 0.08) 0%, rgba(0,0,0,0) 70%); bottom: -200px; right: -100px; }
+.bg-glow-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, rgba(0,0,0,0) 70%); top: 40%; left: 50%; transform: translate(-50%, -50%); }
+
+/* HERO WRAPPER CONTAINER */
+.hero-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 8%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   ELEGAN NAVIGATION - CONTINUOUS ANIMATION
+   ========================================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
+}
+
+.logo span { 
+    color: #da22ff; 
+    /* Efek pendaran logo yang berkedip lembut secara konstan */
+    animation: logoGlow 4s infinite ease-in-out;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+/* 1. ANIMASI GARIS BAWAH BERJALAN TERUS-MENERUS */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* Menggunakan gradien linear berulang untuk efek mengalir */
+    background: linear-gradient(90deg, #00f2fe, #da22ff, #00f2fe);
+    background-size: 200% auto;
+    border-radius: 2px;
+    /* Menjalankan animasi secara infinite sejak halaman dimuat */
+    animation: waveFlow 3s linear infinite;
+    opacity: 0.4; /* Terlihat samar pada menu biasa */
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+/* Menu yang Aktif atau di-Hover akan Menyala Lebih Terang */
+.nav-links li a:hover, 
+.nav-links li a.active {
+    color: var(--text-white);
+    text-shadow: 0 0 10px rgba(218, 34, 255, 0.6);
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+    opacity: 1; /* Cahaya garis menjadi solid */
+    height: 3px; /* Garis menebal secara elegan */
+}
+
+/* 2. ANIMASI IKON BERGERAK NAIK TURUN TERUS-MENERUS */
+.nav-links li a i {
+    display: inline-block;
+    animation: iconFloat 3s infinite ease-in-out;
+}
+
+/* Memberikan jeda (delay) antar-ikon agar gerakannya bergelombang bergantian */
+.nav-links li:nth-child(1) a i { animation-delay: 0s; }
+.nav-links li:nth-child(2) a i { animation-delay: 0.2s; }
+.nav-links li:nth-child(3) a i { animation-delay: 0.4s; }
+.nav-links li:nth-child(4) a i { animation-delay: 0.6s; }
+.nav-links li:nth-child(5) a i { animation-delay: 0.8s; }
+
+
+/* ==========================================
+   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
+   ========================================== */
+
+/* Animasi mengalirkan warna gradien pada garis secara konstan */
+@keyframes waveFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Animasi mengambang untuk semua ikon menu secara mandiri */
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* Animasi pendaran lampu neon pada teks logo */
+@keyframes logoGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(218, 34, 255, 0.2); }
+    50% { text-shadow: 0 0 25px rgba(218, 34, 255, 0.8); }
+}
+
+/* HERO SECTION LAYER */
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+    width: 100%;
+}
+.hero-text { max-width: 650px; }
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(218, 34, 255, 0.08);
+    border: 1px solid var(--border-glow);
+    border-radius: 50px;
+    color: #e0aaff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+.highlight {
+    background: linear-gradient(45deg, #00f2fe, #da22ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+.cta-buttons { display: flex; gap: 20px; }
+.btn {
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary {
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    box-shadow: 0 8px 25px rgba(145, 20, 255, 0.3);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(145, 20, 255, 0.5);
+}
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-white);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+}
+
+/* PREMIUM IMAGE FRAME & BADGES */
+.hero-image-area {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.image-card-frame {
+    position: relative;
+    width: 340px;
+    height: 440px;
+    border-radius: 24px;
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+.coding-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    filter: brightness(0.9) contrast(1.1);
+}
+.floating-tech-badge {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(15, 10, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    animation: floatAnim 4s ease-in-out infinite;
+}
+.badge-html { top: 40px; left: -25px; color: #e34c26; animation-delay: 0s; }
+.badge-css { bottom: 60px; right: -25px; color: #264de4; animation-delay: 1.3s; }
+.badge-js { bottom: -15px; left: 40px; color: #f7df1e; animation-delay: 2.5s; }
+
+@keyframes floatAnim {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* REUSABLE SECTIONS SYSTEM */
+.section-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 120px 8% 60px 8%;
+}
+.section-header { margin-bottom: 60px; }
+.sub-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #da22ff;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+.section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.decor-line {
+    width: 70px;
+    height: 4px;
+    background: var(--primary-gradient);
+    margin-top: 15px;
+    border-radius: 2px;
+}
+
+/* ==========================================
+   ABOUT SECTION WITH PREMIUM GLOW & FLOATING ANIMATIONS
+   ========================================== */
+.about-content-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+}
+
+.about-main-text h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffffff, #a49fb6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-main-text p {
+    color: var(--text-muted);
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+.about-cards-sub { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 25px; 
+}
+
+/* KARTU MINI PREMIUM DENGAN EMISI CAHAYA & EFEK MENGAMBANG CONTIUNUOUS */
+.info-mini-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Memicu animasi mengambang lembut secara konstan */
+    animation: cardFloat 4s infinite ease-in-out;
+}
+
+/* Memberikan jeda waktu (delay) animasi antar kartu agar tidak bergerak bersamaan */
+.about-cards-sub .info-mini-card:nth-child(1) {
+    animation-delay: 0s;
+}
+.about-cards-sub .info-mini-card:nth-child(2) {
+    animation-delay: 2s; /* Kartu kedua bergerak bergantian */
+}
+
+/* Efek saat kursor menyentuh kartu (Hover) */
+.info-mini-card:hover { 
+    border-color: rgba(218, 34, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(145, 20, 255, 0.15);
+    transform: scale(1.02);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* KOTAK IKON BERPENDAR KONSTAN */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(218, 34, 255, 0.08);
+    border: 1px solid rgba(218, 34, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #da22ff;
+    font-size: 1.3rem;
+    position: relative;
+    /* Animasi pendaran konstan pada ikon */
+    animation: iconGlow 3s infinite ease-in-out;
+}
+
+.info-mini-card h4 { 
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem; 
+    color: var(--text-white);
+    letter-spacing: 0.5px;
+}
+
+.info-mini-card p { 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+}
+
+/* MEWAH: Efek garis cahaya menyapu (Sweep Light) di dalam kartu secara berkala */
+.info-mini-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(218, 34, 255, 0.1), transparent);
+    transform: skewX(-25deg);
+    animation: lightSweep 6s infinite ease-in-out;
+}
+
+/* ==========================================
+   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
+   ========================================== */
+
+/* Animasi mengambang naik-turun yang sangat lembut untuk kartu */
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Animasi sapuan cahaya mewah melewati latar belakang kartu */
+@keyframes lightSweep {
+    0% { left: -150%; }
+    50%, 100% { left: 150%; }
+}
+
+/* Animasi denyut pendaran cahaya (glowing) pada kotak ikon */
+@keyframes iconGlow {
+    0%, 100% { 
+        box-shadow: 0 0 0px rgba(218, 34, 255, 0);
+        border-color: rgba(218, 34, 255, 0.2);
+    }
+    50% { 
+        box-shadow: 0 0 15px rgba(218, 34, 255, 0.4);
+        border-color: rgba(218, 34, 255, 0.6);
+    }
+}
+
+/* ==========================================
+   SKILLS SECTION PROGRESS BARS WITH FLOWING ANIMATION
+   ========================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.skill-item {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Sedikit animasi mikro saat kartu skill disorot */
+.skill-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 242, 254, 0.2);
+}
+
+.skill-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.skill-head h5 { 
+    font-size: 1.05rem; 
+    font-weight: 600; 
+}
+
+.skill-head span { 
+    color: #00f2fe; 
+    font-weight: 700; 
+    font-size: 0.95rem; 
+    /* Efek teks persentase berkedip lembut secara konstan */
+    animation: textPulse 2s infinite ease-in-out;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    /* Menggunakan kombinasi 4 warna gradien agar aliran transisinya mulus */
+    background: linear-gradient(90deg, #00f2fe, #da22ff, #00f2fe, #da22ff);
+    background-size: 300% 100%;
+    border-radius: 10px;
+    position: relative;
+    /* Menjalankan animasi warna mengalir secara konstan */
+    animation: progressFlow 4s linear infinite;
+}
+
+/* Menambahkan efek kilatan cahaya (shimmer) transparan yang berjalan di atas progress bar */
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmerEffect 2.5s infinite linear;
+}
+
+/* ==========================================
+   KEYFRAMES LOGIKA ANIMASI BERULANG (INFINITE)
+   ========================================== */
+
+/* Animasi mengalirkan warna gradien dari kiri ke kanan */
+@keyframes progressFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 150% 0%; }
+}
+
+/* Animasi kilatan cahaya metalik (shimmering) */
+@keyframes shimmerEffect {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Animasi denyut halus untuk angka persentase */
+@keyframes textPulse {
+    0%, 100% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 242, 254, 0.2); }
+    50% { opacity: 1; text-shadow: 0 0 12px rgba(0, 242, 254, 0.6); }
+}
+
+/* PORTFOLIO PROJECTS DISPLAY */
+.projects-flex-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.luxury-project-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.luxury-project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 242, 254, 0.25);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.proj-img-wrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+.proj-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.luxury-project-card:hover .proj-img-wrapper img { transform: scale(1.06); }
+.proj-body { padding: 35px; }
+.p-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #00f2fe;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+.proj-body h3 { font-size: 1.35rem; margin-bottom: 12px; }
+.proj-body p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+/* CONTACT SECTION LUXURY GLASS */
+.contact-card-glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.005) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.contact-card-glass h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.contact-card-glass p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+.social-links-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.social-icon-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-white);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+.social-icon-btn:hover {
+    background: var(--text-white);
+    color: var(--bg-deep);
+    transform: translateY(-2px);
+}
+
+/* GLOBAL FOOTER */
+footer {
+    text-align: center;
+    padding: 50px 8%;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    margin-top: 60px;
+}
+footer p { color: #5a546c; font-size: 0.9rem; }
+
+/* RESPONSIVE DESIGN BREAKPOINTS */
+@media (max-width: 992px) {
+    .hero-container, .about-content-grid, .skills-grid, .projects-flex-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-image-area { margin-top: 40px; }
+    .hero h1 { font-size: 2.8rem; }
+    .nav-links { display: none; } /* Simpel responsif hidding */
+}
