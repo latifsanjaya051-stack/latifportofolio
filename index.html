@@ -11,6 +11,35 @@
 </head>
 <body>
 
+    <div id="intro-overlay" class="intro-overlay" aria-hidden="true">
+        <div class="intro-shell">
+            <div class="intro-orb orb-one"></div>
+            <div class="intro-orb orb-two"></div>
+            <div class="intro-grid"></div>
+            <div class="intro-terminal">
+                <div class="terminal-bar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="terminal-body">
+                    <div class="code-line"><span class="prompt">~</span> <span class="typing-text">latifdev</span></div>
+                    <div class="code-line code-line-secondary">Initializing immersive portfolio...</div>
+                    <div class="code-line code-line-secondary">Designing premium digital experiences.</div>
+                    <div class="code-line code-line-secondary">Focus: performance • creativity • innovation</div>
+                </div>
+            </div>
+            <div class="intro-badges">
+                <span>UI / UX</span>
+                <span>Frontend</span>
+                <span>Performance</span>
+            </div>
+            <div class="intro-meta">
+                <div class="intro-name">Muhammad Allatif</div>
+                <div class="intro-role">Building digital experiences with code</div>
+                <div class="intro-progress"><span></span></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Luxury Glowing Background Elements -->
     <div class="ambient-glow bg-glow-1"></div>
     <div class="ambient-glow bg-glow-2"></div>
@@ -48,15 +77,40 @@
                         <img src="assets/latif-photo.jpg.jpg" alt="Latif Portrait" class="coding-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80';">
                         
                         <div class="floating-tech-badge badge-html"><i class="fa-brands fa-html5"></i></div>
-                    
                         <div class="floating-tech-badge badge-css"><i class="fa-brands fa-css3-alt"></i></div>
                         <div class="floating-tech-badge badge-js"><i class="fa-brands fa-js"></i></div>
                         <div class="floating-tech-badge badge-cpp">
                             <i class="fa-solid fa-c"></i><i class="fa-solid fa-plus" style="font-size: 0.6em; vertical-align: super;"></i><i class="fa-solid fa-plus" style="font-size: 0.5em; vertical-align: super;"></i>
-                        <div>
+                        </div>
                         <div class="floating-tech-badge badge-python"><i class="fa-brands fa-python"></i></div>
                         <div class="floating-tech-badge badge-php"><i class="fa-brands fa-php"></i></div>
                         <div class="floating-tech-badge badge-java"><i class="fa-brands fa-java"></i></div>
+
+                    </div>
+
+                    <div class="hobby-stack-wrapper">
+                        <div class="badge hobby-badge-inline"><i class="fa-solid fa-heart"></i> Hobby Saya</div>
+                        <div class="hobby-stack" aria-label="Hobby">
+                            <div class="hobby-chip hobby-youtube">
+                                <i class="fa-brands fa-youtube"></i>
+                                <span>YouTube</span>
+                            </div>
+                        <div class="hobby-chip hobby-spotify">
+                            <i class="fa-brands fa-spotify"></i>
+                            <span>Spotify</span>
+                        </div>
+                        <div class="hobby-chip hobby-tiktok">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </div>
+                        <div class="hobby-chip hobby-badminton">
+                            <i class="fa-solid fa-shuttlecock"></i>
+                            <span>Bulu Tangkis</span>
+                        </div>
+                        <div class="hobby-chip hobby-billiard">
+                            <i class="fa-solid fa-bowling-ball"></i>
+                            <span>Billiard</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,6 +254,19 @@
             <p class="footer-text"><span class="site-name">LatifPortofolio</span> © 2026 — All Rights Reserved. Designed for Maximum Performance.</p>
         </div>
     </footer>
+
+    <script>
+        const introOverlay = document.getElementById('intro-overlay');
+        if (introOverlay) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    introOverlay.classList.add('is-hidden');
+                    document.body.classList.add('intro-done');
+                    setTimeout(() => introOverlay.remove(), 800);
+                }, 3600);
+            });
+        }
+    </script>
 
 </body>
 </html>
