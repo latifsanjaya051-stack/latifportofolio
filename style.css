@@ -3,7 +3,7 @@
    ========================================== */
 :root {
     --bg-deep: #090514;
-    --bg-card: rgba(255, 255, 255, 0.02);
+    --bg-card: rgba(0, 0, 0, 0.45);
     --border-glow: rgba(218, 34, 255, 0.15);
     --primary-gradient: linear-gradient(135deg, #da22ff 0%, #9114ff 100%);
     --accent-glow: radial-gradient(circle, rgba(145, 20, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
@@ -17,6 +17,11 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
     position: relative;
+}
+
+/* Make width calculations include padding/border to avoid overflow on mobile */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 nav {
@@ -660,8 +665,8 @@ nav {
 }
 
 .social-icon-btn:hover {
-    background: var(--text-white);
-    color: var(--bg-deep);
+    background: var(--bg-card);
+    color: var(--text-white);
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(145, 20, 255, 0.22);
 }
@@ -859,6 +864,8 @@ footer {
     .social-icon-btn {
         width: 100%;
         justify-content: center;
+        padding: 12px 18px; /* reduce horizontal padding to prevent overflow */
+        max-width: 100%;
     }
 }
 
@@ -884,9 +891,6 @@ footer {
     flex-direction: column;
 }
 
-
-    animation: logoGlow 4s infinite ease-in-out;
-}
 
 .nav-links {
     display: flex;
